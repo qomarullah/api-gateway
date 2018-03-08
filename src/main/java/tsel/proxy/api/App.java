@@ -30,7 +30,7 @@ public class App
         System.out.println( "Hello World!" );
         
         
-        System.setProperty("log4j.configurationFile",args[1]);
+        //System.setProperty("log4j.configurationFile",args[1]);
 	 	Log.debug("starting..");
 	    
 	 	try {

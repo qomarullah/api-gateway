@@ -109,22 +109,40 @@ public class Router {
 			
 			String path=request.pathInfo()+"?"+request.queryString();
 			String url=getUrl(path)+path;
-			resp=util.get(url, timeout);
+			//resp=util.get(url, timeout);
 			
+			if(url.startsWith("https")){
+				Log.debug("RequestPOST-HTTPS");
+				resp=util.getHttps(url, timeout);
+				
+			}else{
+				Log.debug("RequestGET-HTTP");
+				resp=util.get(url, timeout);
+				
+			}
 			Log.info(url+"=>"+resp.replaceAll("\r", "").replaceAll("\n", ""));
 			
 			return resp;
 			
 		});
 		
-		post("/*", "application/json", (request, response) -> {
+		post("/*",  (request, response) -> {
 
 			String resp = "Bad Request";
 			
 			String path=request.pathInfo()+"?"+request.queryString();
 			String url=getUrl(path)+path;
 			
-			resp=util.post(url, request.body(), timeout);
+			if(url.startsWith("https")){
+				Log.debug("RequestPOST-HTTPS");
+				resp=util.postHttps(url, request.body(), timeout);
+				
+			}else{
+				Log.debug("RequestPOST-HTTP");
+				resp=util.post(url, request.body(), timeout);
+				
+			}
+			
 			Log.info(url+"=>"+resp.replaceAll("\r", "").replaceAll("\n", ""));
 			
 			return resp;

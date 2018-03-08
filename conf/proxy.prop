@@ -2,8 +2,8 @@ server.id=u1
 server.port=7001
 server.timeout=10000
 server.maxthread=100
-server.url=http://localhost
+server.url=https://gitlab.com
 
-num=1
+num=0
 0.proxy.filter=62811800
 0.proxy.url=http://localhost
